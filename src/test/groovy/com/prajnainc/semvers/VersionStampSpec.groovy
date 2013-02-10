@@ -117,5 +117,24 @@ class VersionStampSpec extends Specification {
 		'1.0.0-rc1+buildId.1'	| '1.1.0-rc1+buildId.1'
 	}
 
+	def "string conversion"() {
+		expect:
+		VersionStamp.parse(v1Str).toString() == v1Str
+		where:
+		v1Str << ['1.0.0',
+		'1.0.0',
+		'1.0.0',
+		'1.0.0-rc1',
+		'1.0.0-rc1+buildId.1',
+		'1.0.0-rc1+buildId.1',
+		'1.0.0-rc1',
+		'1.0.0-rc.1',
+		'1.0.0-rc1+buildId',
+		'1.0.0-rc.1+buildId',
+		'1.0.0',
+		'1.0.0-rc1',
+		'1.0.0-rc1+buildId.1',
+		]
+	}
 
 }

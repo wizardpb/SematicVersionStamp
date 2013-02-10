@@ -245,4 +245,18 @@ class VersionStamp implements Comparable<VersionStamp> {
 		return compareTo(obj) == 0;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String versionString = "$major.$minor.$patch"
+		if(preReleaseId) {
+			versionString = versionString + "-${preReleaseId.collect { it.toString() }.join('.')}"
+		}
+		if(buildId) {
+			versionString = versionString + "+${buildId.collect { it.toString() }.join('.')}"
+		}
+		return versionString
+	}
 }
